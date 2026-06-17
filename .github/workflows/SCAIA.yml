@@ -1,7 +1,7 @@
 name: SCAIA
 
 on:
-  pull_request:          # revisa cada PR (modo pr, comentários inline)
+  pull_request_target:          # revisa cada PR (modo pr, comentários inline)
   workflow_dispatch:     # botão manual -> scan do repo inteiro (modo full)
 
 permissions:
@@ -11,7 +11,7 @@ permissions:
 jobs:
   review:
     name: AI PR Review
-    if: github.event_name == 'pull_request'
+    if: github.event_name == 'pull_request_target'
     runs-on: ubuntu-latest
     steps:
       - uses: teodororo/SCAIA@feat/full-repo-scan
