@@ -17,7 +17,7 @@ jobs:
       - uses: teodororo/SCAIA@feat/full-repo-scan
         with:
           api-token: ${{ secrets.API_LLM_KEY }}
-          model: gpt-5.5
+          model: gpt-4o
           # api-base-url: https://openrouter.ai/api/v1   # se não for OpenAI
 
   scan:
@@ -31,7 +31,7 @@ jobs:
         with:
           mode: full
           api-token: ${{ secrets.API_LLM_KEY }}
-          model: gpt-5.5
+          model: gpt-4o
       - uses: actions/upload-artifact@v4
         if: always()
         with:
