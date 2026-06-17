@@ -1,0 +1,39 @@
+name: SCAIA
+
+on:
+  pull_request:          # revisa cada PR (modo pr, comentários inline)
+  workflow_dispatch:     # botão manual -> scan do repo inteiro (modo full)
+
+permissions:
+  contents: read
+  pull-requests: write   # necessário pra postar comentários no PR
+
+jobs:
+  review:
+    name: AI PR Review
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: teodororo/SCAIA@feat/full-repo-scan
+        with:
+          api-token: ${{ secrets.API_LLM_KEY }}
+          model: gpt-4o
+          # api-base-url: https://openrouter.ai/api/v1   # se não for OpenAI
+
+  scan:
+    name: AI Full Repo Scan
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - id: scaia
+        uses: teodororo/SCAIA@feat/full-repo-scan
+        with:
+          mode: full
+          api-token: ${{ secrets.API_LLM_KEY }}
+          model: gpt-4o
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scaia-report
+          path: ${{ steps.scaia.outputs.report-path }}
