@@ -18,7 +18,7 @@ jobs:
         with:
           api-token: ${{ secrets.API_LLM_KEY_CLAUDE }}
           model: claude-opus-4
-          # api-base-url: https://openrouter.ai/api/v1   # se não for OpenAI
+          api-base-url: https://api.anthropic.com/v1
 
   scan:
     name: AI Full Repo Scan
@@ -32,6 +32,7 @@ jobs:
           mode: full
           api-token: ${{ secrets.API_LLM_KEY_CLAUDE }}
           model: claude-opus-4
+          api-base-url: https://api.anthropic.com/v1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
