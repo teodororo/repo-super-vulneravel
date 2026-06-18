@@ -16,9 +16,9 @@ jobs:
     steps:
       - uses: teodororo/SCAIA@feat/full-repo-scan
         with:
-          api-token: ${{ secrets.API_LLM_KEY_CLAUDE }}
+          api-token: ${{ secrets.API_LLM_KEY_OPENROUTER }}
           model: claude-opus-4
-          api-base-url: https://api.anthropic.com/v1
+          api-base-url: https://openrouter.ai/api/v1
 
   scan:
     name: AI Full Repo Scan
@@ -30,9 +30,9 @@ jobs:
         uses: teodororo/SCAIA@feat/full-repo-scan
         with:
           mode: full
-          api-token: ${{ secrets.API_LLM_KEY_CLAUDE }}
+          api-token: ${{ secrets.API_LLM_KEY_OPENROUTER }}
           model: claude-opus-4
-          api-base-url: https://api.anthropic.com/v1
+          api-base-url: https://openrouter.ai/api/v1
       - uses: actions/upload-artifact@v4
         if: always()
         with:
