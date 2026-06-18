@@ -16,8 +16,8 @@ jobs:
     steps:
       - uses: teodororo/SCAIA@feat/full-repo-scan
         with:
-          api-token: ${{ secrets.API_LLM_KEY }}
-          model: gpt-4.1-mini
+          api-token: ${{ secrets.API_LLM_KEY_CLAUDE }}
+          model: claude-opus-4
           # api-base-url: https://openrouter.ai/api/v1   # se não for OpenAI
 
   scan:
@@ -30,8 +30,8 @@ jobs:
         uses: teodororo/SCAIA@feat/full-repo-scan
         with:
           mode: full
-          api-token: ${{ secrets.API_LLM_KEY }}
-          model: gpt-4.1-mini
+          api-token: ${{ secrets.API_LLM_KEY_CLAUDE }}
+          model: claude-opus-4
       - uses: actions/upload-artifact@v4
         if: always()
         with:
